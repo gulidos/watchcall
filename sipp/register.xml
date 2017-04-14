@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<scenario name="registration">
+
+<send retrans="500">
+<![CDATA[
+REGISTER sip:[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch];rport
+Max-Forwards: 20
+Contact: <sip:5331@[local_ip]:[local_port]>
+To: <sip:5331@10.150.12.15>
+From: <sip:5331@10.150.12.15>;tag=[call_number]
+Call-ID: [call_id]
+CSeq: 1 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, INFO
+Content-Length: 0
+User-Agent: Sipp v1.1-TLS, version 20061124
+]]>
+</send>
+
+<recv response="200">
+</recv>
+
+<ResponseTimeRepartition value="10, 20"/>
+<CallLengthRepartition value="10"/>
+
+</scenario>

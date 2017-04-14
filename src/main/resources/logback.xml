@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="true">
+
+	<appender name="core-log"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/var/log/call-watcher.log</file>
+		<encoder>
+			<pattern>
+				<charset>UTF-8</charset>
+				<!-- %d{HH:mm:ss.SSS} %logger{35}:%method:%line %msg%n -->
+				%d{HH:mm:ss.SSS} %logger{35}:%method:%line %msg%n
+			</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/call-watcher.log.%d{yyyy-MM-dd}.gz
+			</fileNamePattern>
+			<maxHistory>180</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	
+ 	<logger
+		name="org.springframework"
+		level="ERROR">
+		<appender-ref ref="core-log" />
+	</logger>
+
+	<logger 
+		name="ru.in" 
+		level="DEBUG" >
+		<appender-ref ref="core-log" />
+	</logger>
+</configuration>

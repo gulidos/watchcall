@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head data-th-fragment="header">
+<title>Title</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet"	th:href="@{/webjars/bootstrap/bootstrap.min.css}" />
+</head>
+
+<body>
+<div id="header" th:include="page :: header"></div>
+	<div class="container">
+		<div class="row">
+			<h4>Current settings:</h4>
+		</div>
+		<div class="row">
+			<div th:if="${msgInfo != null}"	class="alert alert-success alert-dismissable" role="alert">
+				<span th:text="${msgInfo}"></span> 
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		</div>
+		<div class="row">
+			<div th:if="${msgWarn != null}"	class="alert alert alert-danger alert-dismissable" role="alert">
+				<span th:text="${msgWarn}"></span> 
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-11  ">
+				<pre th:each="setting : ${settings}" th:text="${setting}">
+				</pre>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8">
+			<!-- 	<a href="#" data-th-href="@{/reload(phase=reload)}"> -->
+				<a th:href="@{/reload(phase=reload)}">
+					<button type="button" class="btn btn-primary">Refresh_Settings</button>
+				</a>
+			</div>
+		</div>
+		<div id="footer" th:include="page :: copy"></div>
+	</div>
+
+</body>
+</html>

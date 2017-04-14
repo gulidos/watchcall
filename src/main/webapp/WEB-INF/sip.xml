@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sip-app xmlns="http://www.jcp.org/xml/ns/sipservlet"
+	xmlns:javaee="http://java.sun.com/xml/ns/javaee">
+<distributable></distributable>
+	<app-name>call-watcher</app-name>
+	<servlet>
+		<javaee:servlet-name>main-servlet</javaee:servlet-name>
+		<javaee:servlet-class>ru.in.watcher.sip.MainServlet</javaee:servlet-class>
+		<!-- <javaee:load-on-startup>2</javaee:load-on-startup> -->
+	</servlet>
+	
+	<servlet-selection>
+		<servlet-mapping>
+			<servlet-name>main-servlet</servlet-name>
+			<pattern>
+                <or>
+                    <equal>
+                        <var ignore-case="false">request.method</var>
+                        <value>INVITE</value>
+                    </equal>
+                    <equal>
+                        <var ignore-case="false">request.method</var>
+                        <value>OPTIONS</value>
+                    </equal>
+                </or>
+			</pattern>
+		</servlet-mapping>
+	</servlet-selection>
+</sip-app>
+
+	
+	
+	
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<sip-app xmlns="http://www.jcp.org/xml/ns/sipservlet" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jcp.org/xml/ns/sipservlet http://www.jcp.org/xml/ns/sipservlet/sip-app_1_1.xsd"
+	version="1.1"> 
+	<app-name>call-watcher</app-name>
+	<servlet-selection>
+		<main-servlet>main-servlet</main-servlet>
+	</servlet-selection>
+ 	<servlet>
+		<servlet-name>main-servlet</servlet-name>
+		<servlet-class>ru.in.watcher.sip.MainServlet</servlet-class> 
+		<load-on-startup/>
+	</servlet> 
+</sip-app>
+-->
